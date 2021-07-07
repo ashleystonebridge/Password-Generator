@@ -2,16 +2,19 @@
 var passwordLength = 0;
 
 //Function to store the input entered by the user for the length of the password
-//Function also ensures that the minimum length of password is greater than or equal to 8
+//Function also ensures that the minimum length of password is greater than or equal to 8 and that the input cannot be anything but a number
+//User can press Cancel to skip this step
 function askLength() {
   passwordLength = prompt("Please input a number for the length of your password.");
-  if (isNaN(passwordLength) === true) {
-    alert("Please input a number.")
-    askLength();
-  } 
-  if (passwordLength < 8) {
-        alert("Please choose a number greater than or equal to 8.");
-        askLength();
+  if (passwordLength !== null) {
+    if (isNaN(passwordLength) === true) {
+      alert("Please input a number.")
+      askLength();
+    } 
+    if (passwordLength < 8) {
+          alert("Please choose a number greater than or equal to 8.");
+          askLength();
+    }
   }
 }
 
@@ -33,14 +36,14 @@ function askLetters() {
   }
 }
 
-//Calls the function to know if letters will be included in the password or not and if so, how many
+//Calls the function to know if letters will be included in the password, and if so the count is stored in a variable
 askLetters();
 console.log(includeLetters);
 console.log(lettersCount);
 
 function generatePassword () {
   for (var i=0; i<lettersCount; i++) {
-    console.log(letters[Math.floor(Math.random()*i)])
+    console.log(letters[Math.floor(Math.random()*letters.length)]);
   }  
 }
 
