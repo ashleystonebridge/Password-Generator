@@ -5,25 +5,28 @@ var passwordLength = 0;
 //Function also ensures that the minimum length of password is greater than or equal to 8 and that the input cannot be anything but a number
 //User can press Cancel to skip this step
 function askLength() {
-  passwordLength = prompt("Please input a number for the length of your password.");
+  passwordLength = parseInt(prompt("Please input a number for the length of your password."));
   if (passwordLength !== null) {
     if (isNaN(passwordLength) === true) {
       alert("Please input a number.")
       askLength();
     } 
-    if (passwordLength < 8) {
-          alert("Please choose a number greater than or equal to 8.");
+    if (passwordLength < 8 || passwordLength > 128) {
+          alert("Please choose a number greater than or equal to 8 and less than or equal to 128.");
           askLength();
     }
   }
+  return passwordLength;
 }
 
 //Calls the function for length of password
-askLength();
 console.log(passwordLength);
 
 //Declares variable for letters avaialbe to use in the password
-var letters = ("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz");
+var lowerCase = ["a","b","c"]
+var upperCase = ["A","B","C"]
+var numbers = ["1", "2", "3"]
+var symbols = ["!","@","#"]
 //Declares variable for the count of the letters that will be used in the password
 var lettersCount = 0;
 
@@ -37,17 +40,58 @@ function askLetters() {
 }
 
 //Calls the function to know if letters will be included in the password, and if so the count is stored in a variable
-askLetters();
-console.log(includeLetters);
+// console.log(includeLetters);
 console.log(lettersCount);
 
 function generatePassword () {
-  for (var i=0; i<lettersCount; i++) {
-    console.log(letters[Math.floor(Math.random()*letters.length)]);
-  }  
-}
+  var length = askLength();
+  var includeLower = confirm("Use lowercase?");
+  var includeUpper = confirm("Use uppercase?");
+  var includeNumbers = confirm("Use numbers?");
+  var includeSymbols = confirm("Use symbols?");
+  if (includeLower === false &&
+    includeUpper === false &&
+    includeNumbers === false &&
+    includeSymbols === false){
+      alert ("Press OK")
+      generatePassword();
+    }
+  var pot = [];
+  var finalPassword = "";
+  
+  if (includeLower) {
+    pot = pot.concat(lowerCase);
+  }
 
-generatePassword();
+  if (includeUpper) {
+    pot = pot.concat(upperCase);
+  }
+
+  if (includeNumbers) {
+    pot = pot.concat(numbers);
+  }
+
+  if (includeSymbols) {
+    pot = pot.concat(symbols);
+  }
+  
+  console.log(`pot: ${pot}`);
+
+  for (let i=0; i<length; i++) {
+    var index = Math.floor(Math.random()*pot.length);
+    var temp = pot[index];
+    finalPassword += temp;
+  }
+  
+  console.log(finalPassword);
+
+//   askLetters();
+//   for (var i=0; i<lettersCount; i++) {
+//     console.log(letters[Math.floor(Math.random()*letters.length)]);
+//   }  
+return finalPassword;
+
+}
 
 //STARTER CODE - Below is the starter code included in the homework assignment
 
