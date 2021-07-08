@@ -34,7 +34,7 @@ function generatePassword () {
     includeNumbers === false &&
     includeSymbols === false){
       alert ("Please select OK for at least one type of character to include in your password.")
-      //OPEN TO DEBUG - INSTEAD OF RECALLING GENERATEPASSWORD FUNCTION IT GOES BACK TO ASKLENGTH
+      //OPEN TO DEBUG - INSTEAD OF RECALLING GENERATEPASSWORD FUNCTION IT GOES BACK TO ASKLENGTH, AND THEN IT KINDA BREAKS BECAUSE WON'T WRITE THE PASSWORD
       generatePassword();
     }
   var pot = [];
