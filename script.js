@@ -17,10 +17,10 @@ function askLength() {
 
 //Assigns arrays to variables for the different types of characters the user can choose to include in their password
 //OPEN TO RESEARCH/UPDATE - CAN I INPUT AS ONE LONG STRING WITHOUT THE QUOTES? IF NOT, UPDATE TO INCLUDE ALL LETTERS, ALL NUMBERS, ETC...
-var lowerCase = ["a","b","c"]
-var upperCase = ["A","B","C"]
-var numbers = ["1", "2", "3"]
-var symbols = ["!","@","#"]
+var lowerCase = ["abcdefg"]
+var upperCase = ["ABCDEFG"]
+var numbers = ["0123456789"]
+var symbols = ["!@#$%^&*()"]
 
 //OPEN TO DO - ADD COMMENTS HERE TO EXPLAIN THIS FUNCTION
 function generatePassword () {
@@ -37,23 +37,23 @@ function generatePassword () {
       //OPEN TO DEBUG - INSTEAD OF RECALLING GENERATEPASSWORD FUNCTION IT GOES BACK TO ASKLENGTH, AND THEN IT KINDA BREAKS BECAUSE WON'T WRITE THE PASSWORD
       generatePassword();
     }
-  var pot = [];
+  var pot = "";
   var finalPassword = "";
   
   if (includeLower) {
-    pot = pot.concat(lowerCase);
+    pot = pot + lowerCase;
   }
 
   if (includeUpper) {
-    pot = pot.concat(upperCase);
+    pot = pot + upperCase;
   }
 
   if (includeNumbers) {
-    pot = pot.concat(numbers);
+    pot = pot + numbers;
   }
 
   if (includeSymbols) {
-    pot = pot.concat(symbols);
+    pot = pot + symbols;
   }
   
   console.log(`pot: ${pot}`);
